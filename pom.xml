@@ -1,0 +1,58 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                                                xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.efgriver.athena.jdbc</groupId>
+  <artifactId>efgriver-athena-jdbc</artifactId>
+  <version>1.0.0</version>
+
+  <properties>
+        <maven.compiler.target>1.8</maven.compiler.target>
+        <maven.compiler.source>1.8</maven.compiler.source>
+  </properties>
+  <build>
+        <directory>${project.basedir}/target</directory>
+        <sourceDirectory>${project.basedir}/src</sourceDirectory>
+        <plugins>
+            <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.2.1</version>
+                <configuration>
+                    <mainClass>com.efgriver.athena.jdbc.AwesomeAthenaJdbc</mainClass>
+                    <classpathScope>test</classpathScope>
+                    <executable>java</executable>
+                    <arguments>
+                        <argument>-classpath</argument>
+                        <argument>${project.basedir}/lib/AthenaJDBC42_2.0.9.jar</argument>
+                        <argument>-classpath</argument>
+                        <argument>${project.basedir}/lib/athena-jdbc-custom-credentials-provider-0.0.1-SNAPSHOT.jar</argument>
+                        <argument>com.efgriver.athena.jdbc.AwesomeAthenaJdbc</argument>
+                    </arguments>
+                </configuration>
+            </plugin>
+        </plugins>
+        <resources>
+            <resource>
+                <directory>lib</directory>
+            </resource>
+        </resources>
+  </build>
+  <dependencies>
+    <dependency>
+        <groupId>com.amazonaws.custom.athena.jdbc</groupId>
+        <artifactId>athena-jdbc-custom-credentials-provider</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <scope>system</scope>
+        <systemPath>${project.basedir}/lib/athena-jdbc-custom-credentials-provider-0.0.1-SNAPSHOT.jar</systemPath>
+    </dependency>
+    <dependency>
+        <groupId>com.simba.athena.jdbc</groupId>
+        <artifactId>AthenaJDBC42_2.0.9.jar</artifactId>
+        <version>2.0.9</version>
+        <scope>system</scope>
+        <systemPath>${project.basedir}/lib/AthenaJDBC42_2.0.9.jar</systemPath>
+    </dependency>
+ </dependencies>
+
+</project>
